@@ -21,7 +21,7 @@ eval:
 update-branch:
 	git config --global user.name $(USER_NAME)
 	git config --global user.email $(USER_EMAIL)
-	git pull origin update
+	git pull --rebase origin update
 	git commit -am "Update with new results" || echo "Nothing to commit"
 	git push origin HEAD:update
 
