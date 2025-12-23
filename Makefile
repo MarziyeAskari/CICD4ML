@@ -30,10 +30,12 @@ update-branch:
 
 
 hf-login:
-	git pull origin update
-	git switch update
+	git fetch origin update
+	git checkout update
+	git reset --hard origin/update
 	pip install --upgrade huggingface_hub
 	hf auth login --token $(HF)
+
 
 push-hup:
 	hf upload ./App --repo-id kingabzpro/Drug-classification	--repo-type space	--commit-message "Sync App files"
