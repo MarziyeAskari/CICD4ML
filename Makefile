@@ -26,7 +26,7 @@ hf-login:
 	pip install -U "huggingface_hub[cli]"
 	huggingface-cli login --token $(HF) --add-to-git-credential
 push-hup:
-	hugging-face-cli upload kingabzpro/Drug-classification	./App --repo-type=space --commit-message="Sync App files"
-	hugging-face-cli upload kingabzpro/Drug-classification	./Model /Model --repo-type=space --commit-message="Sync Model"
-	hugging-face-cli upload kingabzpro/Drug-classification	./Results /Metrics --repo-type=space --commit-message="Sync Model"
+	huggingface-cli upload kingabzpro/Drug-classification	./App --repo-type=space --commit-message="Sync App files"
+	huggingface-cli upload kingabzpro/Drug-classification	./Model /Model --repo-type=space --commit-message="Sync Model"
+	huggingface-cli upload kingabzpro/Drug-classification	./Results /Metrics --repo-type=space --commit-message="Sync Model"
 deploy: hf-login push-hup
