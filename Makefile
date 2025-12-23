@@ -28,7 +28,8 @@ hf-login:
 	hf auth login --token $(HF)
 
 push-hup:
-	hf repo upload ./App --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync App files"
-	hf repo upload ./Model --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync Model"
-	hf repo upload ./Results --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync Metrics"
+	hf upload ./App --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync App files"
+	hf upload ./Model --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync Model"
+	hf upload ./Results --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync Metrics"
+
 deploy: hf-login push-hup
