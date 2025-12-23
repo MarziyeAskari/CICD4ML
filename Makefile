@@ -1,3 +1,5 @@
+.PHONY: install format train eval update-branch hf-login push-hup deploy
+
 install:
 	pip install --upgrade pip && \
 	pip install -r requirements.txt
@@ -19,7 +21,7 @@ update-branch:
 	git config --global user.name $(USER_NAME)
 	git config --global user.email $(USER_EMAIL)
 	git commit -am "Update with new results"
-	git push --force origin HEAD:update
+	git push origin HEAD:update
 
 hf-login:
 	git pull origin update
@@ -28,8 +30,19 @@ hf-login:
 	hf auth login --token $(HF)
 
 push-hup:
-	hf upload ./App --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync App files"
-	hf upload ./Model --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync Model"
-	hf upload ./Results --repo-id kingabzpro/Drug-classification --repo-type space --commit-message "Sync Metrics"
+	hf upload ./App \
+		--repo-id kingabzpro/Drug-classification \
+		--repo-type space \
+		--commit-message "Sync App files"
+
+	hf upload-large-folder ./Model \
+		--repo-id kingabzpro/Drug-classification \
+		--repo-type space \
+		--commit-message "Sync Model"
+
+	hf upload ./Results \
+		--repo-id kingabzpro/Drug-classification \
+		--repo-type space \
+		--commit-message "Sync Metrics"
 
 deploy: hf-login push-hup
