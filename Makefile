@@ -21,11 +21,12 @@ eval:
 update-branch:
 	git config --global user.name $(USER_NAME)
 	git config --global user.email $(USER_EMAIL)
-	git stash --include-untracked
-	git pull --rebase origin update
-	git stash pop || true
-	git commit -am "Update with new results" || echo "Nothing to commit"
-	git push origin HEAD:update
+	git fetch origin update
+	git checkout update
+	git reset --hard origin/update
+	git add .
+	git commit -m "Update with new results" || echo "Nothing to commit"
+	git push origin update
 
 
 hf-login:
