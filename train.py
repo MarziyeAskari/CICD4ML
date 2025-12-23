@@ -7,6 +7,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, f1_score
 import skops.io as sio
+
 # pip install skops
 # pip install numpy
 # pip uninstall scikit-learn -y
@@ -19,7 +20,9 @@ drug_df.head(3)
 X = drug_df.drop(columns="Drug", axis=1).values
 y = drug_df["Drug"].values
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=125)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=125
+)
 
 
 cat_str = [1, 2, 3]
@@ -31,11 +34,8 @@ new_pipline = Pipeline(
     ]
 )
 transform = ColumnTransformer(
-    [
-        ("encoder", OrdinalEncoder(), cat_str),
-        ("num_scaler", new_pipline, cat_num)]
+    [("encoder", OrdinalEncoder(), cat_str), ("num_scaler", new_pipline, cat_num)]
 )
-
 
 
 pipe = Pipeline(
@@ -64,4 +64,4 @@ disp.plot()
 plt.savefig("Results/model_results.png", dpi=120)
 
 sio.dump(pipe, "Model/drug_pipeline.skops")
-#obj = sio.load("Model/drug_pipeline.skops", trusted=True)
+# obj = sio.load("Model/drug_pipeline.skops", trusted=True)
