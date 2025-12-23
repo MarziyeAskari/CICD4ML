@@ -21,7 +21,6 @@ eval:
 update-branch:
 	git config --global user.name $(USER_NAME)
 	git config --global user.email $(USER_EMAIL)
-	git pull origin update
 	git commit -am "Update with new results" || echo "Nothing to commit"
 	git push origin HEAD:update
 
@@ -32,10 +31,7 @@ hf-login:
 	hf auth login --token $(HF)
 
 push-hup:
-	hf upload ./App \
-		--repo-id kingabzpro/Drug-classification \
-		--repo-type space \
-		--commit-message "Sync App files"
+	hf upload ./App --repo-id kingabzpro/Drug-classification	--repo-type space	--commit-message "Sync App files"
 
 	hf upload-large-folder ./Model \
 		--repo-id kingabzpro/Drug-classification \
