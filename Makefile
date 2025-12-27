@@ -37,16 +37,18 @@ hf-login:
 
 
 push-hup:
-	hf upload kingabzpro/Drug-classification ./App \
+push-hup:
+	hf upload MarziyeAsk/Drug_classification ./App \
 		--repo-type space \
 		--commit-message "Sync App files"
 
-	hf upload-large-folder ./Model kingabzpro/Drug-classification \
+	hf upload-large-folder ./Model MarziyeAsk/Drug_classification \
 		--repo-type space \
 		--commit-message "Sync Model"
 
-	hf upload kingabzpro/Drug-classification ./Results \
+	hf upload MarziyeAsk/Drug_classification ./Results \
 		--repo-type space \
 		--commit-message "Sync Metrics"
+
 
 deploy: hf-login push-hup
