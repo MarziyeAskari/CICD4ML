@@ -42,7 +42,7 @@ push-hup:
 		--repo-type space \
 		--commit-message "Sync App files"
 
-	hf upload-large-folder ./Model MarziyeAsk/Drug_classification \
+	hf upload ./Model MarziyeAsk/Drug_classification \
 		--repo-type space \
 		--commit-message "Sync Model"
 
